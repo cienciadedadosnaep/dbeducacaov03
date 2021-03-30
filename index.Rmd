@@ -139,7 +139,9 @@ educacao_enem_estudantes_cor_2015_2019 %>%
   e_charts(COR) %>% 
   e_color(c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5'),"#ffffff") %>%
   e_pie(FR,roseType = "radius",timeline = TRUE) %>%
-  e_tooltip()
+   e_tooltip(
+    formatter = e_tooltip_item_formatter("percent")
+  )
 ```
 
 #c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5','#30576B') 
