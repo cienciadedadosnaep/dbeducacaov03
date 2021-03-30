@@ -97,7 +97,7 @@ knitr::include_graphics("figure/ifba.svg")
 
 Column {.tabset}
 -------------------------------------
-### <font size="5"> **Nº Inscritos no ENEM** </font>
+### <font size="5"> Nº Inscritos no ENEM </font>
 
 ```{r, eval=TRUE, fig.height=4, fig.width=3}
 educacao_enem_estudantes_cor_2015_2019 %>% group_by(ANO) %>%
@@ -128,7 +128,7 @@ e_axis_labels(x ="",y= "") %>%
   e_toolbox_feature(feature = "dataZoom") %>%  
   e_format_y_axis(suffix = "")
 ```
-### <font size="5"> **Nº Inscritos no ENEM 2019 Raça/Cor** </font>
+### <font size="5"> Nº Inscritos no ENEM 2019 Raça/Cor </font>
 ```{r}
 educacao_enem_estudantes_cor_2015_2019 %>% 
   #mutate(anom = year(ANO)) %>%  
@@ -139,7 +139,7 @@ educacao_enem_estudantes_cor_2015_2019 %>%
   #e_charts(COR,timeline = TRUE) %>% 
   e_charts(COR) %>% 
   e_color(c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5'),"#ffffff")  %>%
-  e_pie(`Percentual(%)`,roseType = "radius",timeline = TRUE) %>% e_tooltip()
+  e_pie(`Percentual(%)`,roseType = "radius") %>% e_tooltip()
 
 ```
 
