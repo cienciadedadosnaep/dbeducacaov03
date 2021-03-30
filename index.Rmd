@@ -1,0 +1,145 @@
+---
+title: "Visualização e Ciência de Dados"
+output: 
+  flexdashboard::flex_dashboard:
+    logo: figure/logo_isolado_cdnaep_v00.png
+    css: style.css
+    social: menu
+    orientation: columns
+    vertical_layout: fill
+    source_code: embed
+---
+
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+#library(ggplot2)
+library("DT")
+library("readr")
+library("dplyr")
+library("ggplot2")
+library("kableExtra")
+library("tidyr")
+library("formattable")
+library("plotly")
+library("ggplotlyExtra")
+library("ggpubr")
+library("tidyverse")
+library("hrbrthemes")
+library("waffle")
+library(ggthemes)
+library(extrafont)
+library(gganimate)
+
+
+library(echarts4r) # charts
+library(tidyverse) # general use
+library(lubridate) # dates and times
+library(prophet) # forecasting
+
+
+CENSO_SUP <- NULL
+CENSO_SUP <- read_delim("data/educacao/CENSO_SUPERIOR/DM_ALUNO_2009_2018_CO_IES_by_ANO_TP_COR_RACA_TP_SEXO.csv",",",escape_double = FALSE,trim_ws = FALSE)
+#CENSO_SUP$TP_SEXO <- ifelse(CENSO_SUP$TP_SEXO==1,"Feminino","Masculino")
+CENSO_SUP$TP_SEXO <- ifelse(CENSO_SUP$TP_SEXO==1,"F","M")
+
+# Transformacao da variavel numerica de acordo com o vocabulario 
+CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==0,"*NQD",
+                                CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==1,"Branca",CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==2,"Preta",CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==3,"Parda",CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==4,"Amarela",CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==5,"Indígena",CENSO_SUP$TP_COR_RACA <- ifelse(CENSO_SUP$TP_COR_RACA==9,"*NDI",NA)))))))
+
+CONCLUINTES_SSA <- CENSO_SUP %>% filter(IN_CONCLUINTE==1)
+
+
+
+HEAT_SSA_IES_SEXO_RACA <- CONCLUINTES_SSA %>% dplyr::group_by(ANO_CENSO_SUP,TP_SEXO,TP_COR_RACA) %>% summarise(quantidade = sum(value,na.rm = "TRUE")) 
+
+
+#target = c("Amarela","Branca","Indígena","Parda","Preta")
+target = c("Parda","Preta")
+HEAT_SSA_IES_SEXO_RACA_S_NQD_NDI <- HEAT_SSA_IES_SEXO_RACA %>%  filter(TP_COR_RACA %in% target) %>%
+  dplyr::group_by(ANO_CENSO_SUP,TP_SEXO,TP_COR_RACA) %>% 
+  summarise(quantidadef = sum(quantidade,na.rm = "TRUE")) 
+
+educacao_enem_raca_2016_2019 <- read_csv("data/educacao_enem_raca_2016-2019.csv")
+educacao_enem_estudantes_cor_2015_2019 <- read_csv("data/educacao_enem_estudantes_cor_2015-2019.csv")
+
+educacao_enem_estudantes_cor_2015_2019$ANO <- (as.Date(as.character(educacao_enem_estudantes_cor_2015_2019$ANO),format = '%Y'))
+```
+
+Column {data-width=300}
+-------------------------------------
+
+
+### Inscritos - Cor/Raça Preta ou Parda  2016
+```{r}
+insc <- educacao_enem_estudantes_cor_2015_2019 %>% filter(year(ANO) %in% c(2016)) %>% filter(COR %in% c('Preta','Parda')) %>% summarise(valor=sum(FA)) %>% as_tibble()
+valueBox(insc, icon = "fa-pencil",href="#concluintes-f",
+         color = "#7faed2")
+```
+
+### Inscritos - Cor/Raça Preta ou Parda 2019
+```{r}
+inscr <- educacao_enem_estudantes_cor_2015_2019 %>% filter(year(ANO) %in% c(2019)) %>% filter(COR %in% c('Preta','Parda')) %>% summarise(valor=sum(FA)) %>% as_tibble()
+  valueBox(inscr, icon = "fa-pencil", href="#concluintes-m",color='#4a82a8')
+```
+
+
+### **Tema:** Educação
+
+```{r}
+knitr::include_graphics("figure/ifba.svg")
+```
+
+
+
+
+
+Column {.tabset}
+-------------------------------------
+### <font size="5"> **Nº Inscritos no ENEM** </font>
+
+```{r, eval=TRUE, fig.height=4, fig.width=3}
+educacao_enem_estudantes_cor_2015_2019 %>% group_by(ANO) %>%
+  summarise(valor = sum(FA)) %>%
+  e_charts(x = ANO) %>%   #,width = "100%", height = "200px") %>%
+  e_bar(valor,legend = FALSE, name = "Nº Inscritos") %>% 
+  #e_labels(position = "right") %>% 
+  e_labels(position = "top") %>% 
+  e_tooltip() %>% 
+  e_title("Total", "") %>% 
+ # e_flip_coords() %>% 
+  e_y_axis(splitLine = list(show = FALSE),formatter = e_axis_formatter("decimal", locale = "pt-br")) %>% 
+  #e_x_axis(show = FALSE) %>%
+  e_x_axis(show = TRUE) %>%
+  e_color(
+    c("#00c4cc", "#db4470"),
+    "#ffffff"
+  ) %>%  e_toolbox_feature(
+    feature = "dataView",
+    title = "Ver dados"
+  ) %>% 
+e_axis_labels(x ="",y= "") %>%
+  e_tooltip(trigger="axis",
+            axisPointer = list(
+              type = "cross"),
+            textStyle=list(fontFamily="arial",
+                           fontSize=12)) %>%
+  e_toolbox_feature(feature = "dataZoom") %>%  
+  e_format_y_axis(suffix = "")
+```
+### <font size="5"> **Nº Inscritos no ENEM 2019 Raça/Cor** </font>
+```{r}
+educacao_enem_estudantes_cor_2015_2019 %>% 
+  #mutate(anom = year(ANO)) %>%  
+   filter(year(ANO) %in% c(2019)) %>% 
+#  group_by(anom) %>%
+  head() %>% 
+  #e_charts(COR,timeline = TRUE) %>% 
+  e_charts(COR) %>% 
+  e_color(c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5'),"#ffffff") %>%
+  e_pie(FR,roseType = "radius",timeline = TRUE) %>%
+  e_tooltip()
+```
+
+#c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5','#30576B') 
