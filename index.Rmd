@@ -133,13 +133,13 @@ e_axis_labels(x ="",y= "") %>%
 educacao_enem_estudantes_cor_2015_2019 %>% 
   #mutate(anom = year(ANO)) %>%  
    filter(year(ANO) %in% c(2019)) %>%
-   mutate(Percentual = FR) %>%
+   mutate(`Percentual(%)` = FR) %>%
 #  group_by(anom) %>%
   head() %>% 
   #e_charts(COR,timeline = TRUE) %>% 
   e_charts(COR) %>% 
   e_color(c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5'),"#ffffff")  %>%
-  e_pie(Percentual,roseType = "radius",timeline = TRUE) %>% e_tooltip()
+  e_pie(`Percentual(%)`,roseType = "radius",timeline = TRUE) %>% e_tooltip()
 
 ```
 

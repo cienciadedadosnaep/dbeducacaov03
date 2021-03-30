@@ -2667,16 +2667,16 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="288" data-fig-height="384">
 
 </div>
-<div id="htmlwidget-d27eacf91d098cbd1405" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d27eacf91d098cbd1405">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"splitLine":{"show":false},"axisLabel":{"formatter":" {value} "},"name":""}],"xAxis":[{"data":["2015-03-30","2016-03-30","2017-03-30","2018-03-30","2019-03-30"],"type":"time","boundaryGap":true,"show":true,"name":""}],"series":[{"data":[{"value":["2015-03-30","159376"]},{"value":["2016-03-30","175867"]},{"value":["2017-03-30","121063"]},{"value":["2018-03-30"," 93852"]},{"value":["2019-03-30"," 88557"]}],"name":"Nº Inscritos","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","label":{"show":true,"position":"top"}}],"tooltip":{"trigger":"axis","textStyle":{"fontFamily":"arial","fontSize":12}},"title":[{"text":"Total","subtext":""}],"color":["#00c4cc","#db4470"],"backgroundColor":"#ffffff","toolbox":{"feature":{"dataView":{"title":"Ver dados"},"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2e7411542fd38fb80cd6" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2e7411542fd38fb80cd6">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"splitLine":{"show":false},"axisLabel":{"formatter":" {value} "},"name":""}],"xAxis":[{"data":["2015-03-30","2016-03-30","2017-03-30","2018-03-30","2019-03-30"],"type":"time","boundaryGap":true,"show":true,"name":""}],"series":[{"data":[{"value":["2015-03-30","159376"]},{"value":["2016-03-30","175867"]},{"value":["2017-03-30","121063"]},{"value":["2018-03-30"," 93852"]},{"value":["2019-03-30"," 88557"]}],"name":"Nº Inscritos","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","label":{"show":true,"position":"top"}}],"tooltip":{"trigger":"axis","textStyle":{"fontFamily":"arial","fontSize":12}},"title":[{"text":"Total","subtext":""}],"color":["#00c4cc","#db4470"],"backgroundColor":"#ffffff","toolbox":{"feature":{"dataView":{"title":"Ver dados"},"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="nº-inscritos-no-enem-2019-raçacor" class="section level3">
 <h3><font size="5"> <strong>Nº Inscritos no ENEM 2019 Raça/Cor</strong> </font></h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<div id="htmlwidget-f539cfa92a5a002649c2" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f539cfa92a5a002649c2">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"color":["#175676","#4189AF","#83B1D5","#FDD168","#A094E1","#87A5B5"],"backgroundColor":"#ffffff","legend":{"data":["Parda","Preta","Branca","Não declarado","Amarela","Indígena"]},"series":[{"name":"Percentual","type":"pie","roseType":"radius","timeline":true,"data":[{"value":44.92,"name":"Parda"},{"value":36.58,"name":"Preta"},{"value":13.68,"name":"Branca"},{"value":2.34,"name":"Não declarado"},{"value":2.01,"name":"Amarela"},{"value":0.47,"name":"Indígena"}]}],"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a52836caf801f6ca4c4d" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a52836caf801f6ca4c4d">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"color":["#175676","#4189AF","#83B1D5","#FDD168","#A094E1","#87A5B5"],"backgroundColor":"#ffffff","legend":{"data":["Parda","Preta","Branca","Não declarado","Amarela","Indígena"]},"series":[{"name":"Percentual(%)","type":"pie","roseType":"radius","timeline":true,"data":[{"value":44.92,"name":"Parda"},{"value":36.58,"name":"Preta"},{"value":13.68,"name":"Branca"},{"value":2.34,"name":"Não declarado"},{"value":2.01,"name":"Amarela"},{"value":0.47,"name":"Indígena"}]}],"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -2834,13 +2834,13 @@ e_axis_labels(x ="",y= "") %>%
 educacao_enem_estudantes_cor_2015_2019 %>% 
   #mutate(anom = year(ANO)) %>%  
    filter(year(ANO) %in% c(2019)) %>%
-   mutate(Percentual = FR) %>%
+   mutate(`Percentual(%)` = FR) %>%
 #  group_by(anom) %>%
   head() %>% 
   #e_charts(COR,timeline = TRUE) %>% 
   e_charts(COR) %>% 
   e_color(c('#175676','#4189AF','#83B1D5','#FDD168','#A094E1','#87A5B5'),"#ffffff")  %>%
-  e_pie(Percentual,roseType = "radius",timeline = TRUE) %>% e_tooltip()
+  e_pie(`Percentual(%)`,roseType = "radius",timeline = TRUE) %>% e_tooltip()
 
 ```
 
