@@ -121,8 +121,8 @@ educacao_enem_estudantes_cor_2015_2019 %>% group_by(ANO) %>%
   ) %>% 
 e_axis_labels(x ="",y= "") %>%
   e_tooltip(trigger="axis",
-            axisPointer = list(
-              type = "cross"),
+#            axisPointer = list(
+#              type = "cross"),
             textStyle=list(fontFamily="arial",
                            fontSize=12)) %>%
   e_toolbox_feature(feature = "dataZoom") %>%  
