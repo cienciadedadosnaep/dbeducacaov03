@@ -2636,7 +2636,7 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div id="column" class="section level2" data-width="300">
+<div id="column" class="section level2" data-width="200">
 <h2>Column</h2>
 <div id="inscritos---corraça-preta-ou-parda-2016" class="section level3">
 <h3>Inscritos - Cor/Raça Preta ou Parda 2016</h3>
@@ -2667,16 +2667,41 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="288" data-fig-height="384">
 
 </div>
-<div id="htmlwidget-c7dcf8dd2b81e4a8a1e7" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c7dcf8dd2b81e4a8a1e7">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"splitLine":{"show":false},"axisLabel":{"formatter":" {value} "},"name":""}],"xAxis":[{"data":["2015-03-30","2016-03-30","2017-03-30","2018-03-30","2019-03-30"],"type":"time","boundaryGap":true,"show":true,"name":""}],"series":[{"data":[{"value":["2015-03-30","159376"]},{"value":["2016-03-30","175867"]},{"value":["2017-03-30","121063"]},{"value":["2018-03-30"," 93852"]},{"value":["2019-03-30"," 88557"]}],"name":"Nº Inscritos","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","label":{"show":true,"position":"top"}}],"tooltip":{"trigger":"axis","textStyle":{"fontFamily":"arial","fontSize":12}},"title":[{"text":"Total","subtext":""}],"color":["#00c4cc","#db4470"],"backgroundColor":"#ffffff","toolbox":{"feature":{"dataView":{"title":"Ver dados"},"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f5d1007f540dc188f8f5" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f5d1007f540dc188f8f5">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"splitLine":{"show":false},"axisLabel":{"formatter":" {value} "},"name":""}],"xAxis":[{"data":["2015-04-09","2016-04-09","2017-04-09","2018-04-09","2019-04-09"],"type":"time","boundaryGap":true,"show":true,"name":""}],"series":[{"data":[{"value":["2015-04-09","159376"]},{"value":["2016-04-09","175867"]},{"value":["2017-04-09","121063"]},{"value":["2018-04-09"," 93852"]},{"value":["2019-04-09"," 88557"]}],"name":"Nº Inscritos","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","label":{"show":true,"position":"top"}}],"tooltip":{"trigger":"axis","textStyle":{"fontFamily":"arial","fontSize":12}},"title":[{"text":"Total","subtext":""}],"color":["#20cfef","#db4470"],"backgroundColor":"#ffffff","toolbox":{"feature":{"dataView":{"title":"Ver dados"},"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="nº-inscritos-no-enem-2019-raçacor" class="section level3">
 <h3><font size="5"> Nº Inscritos no ENEM 2019 Raça/Cor </font></h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<div id="htmlwidget-bc77c75e3a147926338a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bc77c75e3a147926338a">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"color":["#175676","#4189AF","#83B1D5","#FDD168","#A094E1","#87A5B5"],"backgroundColor":"#ffffff","legend":{"data":["Parda","Preta","Branca","Não declarado","Amarela","Indígena"]},"series":[{"name":"Percentual(%)","type":"pie","roseType":"radius","data":[{"value":44.92,"name":"Parda"},{"value":36.58,"name":"Preta"},{"value":13.68,"name":"Branca"},{"value":2.34,"name":"Não declarado"},{"value":2.01,"name":"Amarela"},{"value":0.47,"name":"Indígena"}]}],"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dc593d2f8c69770e234c" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dc593d2f8c69770e234c">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"color":["#175676","#4189AF","#83B1D5","#FDD168","#A094E1","#87A5B5"],"backgroundColor":"#ffffff","legend":{"data":["Parda","Preta","Branca","Não declarado","Amarela","Indígena"]},"series":[{"name":"Percentual(%)","type":"pie","roseType":"radius","data":[{"value":44.92,"name":"Parda"},{"value":36.58,"name":"Preta"},{"value":13.68,"name":"Branca"},{"value":2.34,"name":"Não declarado"},{"value":2.01,"name":"Amarela"},{"value":0.47,"name":"Indígena"}]}],"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<!-- ### <font size="5"> Nº Inscritos no ENEM 2015-2019 Raça/Cor </font> -->
+<!-- ```{r} -->
+<!--  dados<-educacao_enem_estudantes_cor_2015_2019 %>% group_by(ANO,COR) %>%  mutate(valor = sum(FA)) -->
+<!-- objeto <- dados %>%  -->
+<!-- ggplot(aes(ANO,valor,fill=COR)) + -->
+<!--   geom_line(aes(ANO,valor,color=COR))+  -->
+<!--     labs( -->
+<!--     title = "", -->
+<!--     x = "Ano", -->
+<!--     y = "Nº" -->
+<!--   ) + -->
+<!--   theme(title = element_text(size = 12,colour = "#db4470"))+ -->
+<!--   theme(axis.title.x=element_text(size=11)) + -->
+<!--   theme(axis.title.y=element_text(size=11)) + -->
+<!--   theme(legend.text=element_text(size =11)) + -->
+<!--   theme(axis.text=element_text(size =11))  + -->
+<!--   theme(legend.position = "none")+ -->
+<!--   theme(panel.grid = element_blank(), axis.ticks.y = element_line())+ -->
+<!--   theme(panel.border = element_rect(fill=NA, color = "#64D2AA", size = 2))+ -->
+<!--   theme(panel.background = element_rect(fill=NA,color = "gray70", size = 2), -->
+<!--         panel.grid.major = element_line(color = "gray70", size = .5), -->
+<!--         panel.grid.minor = element_line(color = "gray70", size = .25))+ -->
+<!--   theme(axis.text.x = element_text(angle = 25, vjust = 1.0, hjust = 1.0))+  facet_wrap(~COR,ncol = 3) -->
+<!-- grid.arrange(objeto, ncol=1, nrow=1, widths=c(8)) -->
+<!-- ``` -->
 </div>
 </div>
 
@@ -2732,6 +2757,7 @@ library("waffle")
 library(ggthemes)
 library(extrafont)
 library(gganimate)
+library(gridExtra)
 
 
 library(echarts4r) # charts
@@ -2768,7 +2794,7 @@ educacao_enem_estudantes_cor_2015_2019 <- read_csv("data/educacao_enem_estudante
 educacao_enem_estudantes_cor_2015_2019$ANO <- (as.Date(as.character(educacao_enem_estudantes_cor_2015_2019$ANO),format = '%Y'))
 ```
 
-Column {data-width=300}
+Column {data-width=200}
 -------------------------------------
 
 
@@ -2814,7 +2840,7 @@ educacao_enem_estudantes_cor_2015_2019 %>% group_by(ANO) %>%
   #e_x_axis(show = FALSE) %>%
   e_x_axis(show = TRUE) %>%
   e_color(
-    c("#00c4cc", "#db4470"),
+    c("#20cfef", "#db4470"),
     "#ffffff"
   ) %>%  e_toolbox_feature(
     feature = "dataView",
@@ -2844,6 +2870,34 @@ educacao_enem_estudantes_cor_2015_2019 %>%
 
 ```
 
+<!-- ### <font size="5"> Nº Inscritos no ENEM 2015-2019 Raça/Cor </font> -->
+
+<!-- ```{r} -->
+<!--  dados<-educacao_enem_estudantes_cor_2015_2019 %>% group_by(ANO,COR) %>%  mutate(valor = sum(FA)) -->
+
+<!-- objeto <- dados %>%  -->
+<!-- ggplot(aes(ANO,valor,fill=COR)) + -->
+<!--   geom_line(aes(ANO,valor,color=COR))+  -->
+<!--     labs( -->
+<!--     title = "", -->
+<!--     x = "Ano", -->
+<!--     y = "Nº" -->
+<!--   ) + -->
+<!--   theme(title = element_text(size = 12,colour = "#db4470"))+ -->
+<!--   theme(axis.title.x=element_text(size=11)) + -->
+<!--   theme(axis.title.y=element_text(size=11)) + -->
+<!--   theme(legend.text=element_text(size =11)) + -->
+<!--   theme(axis.text=element_text(size =11))  + -->
+<!--   theme(legend.position = "none")+ -->
+<!--   theme(panel.grid = element_blank(), axis.ticks.y = element_line())+ -->
+<!--   theme(panel.border = element_rect(fill=NA, color = "#64D2AA", size = 2))+ -->
+<!--   theme(panel.background = element_rect(fill=NA,color = "gray70", size = 2), -->
+<!--         panel.grid.major = element_line(color = "gray70", size = .5), -->
+<!--         panel.grid.minor = element_line(color = "gray70", size = .25))+ -->
+<!--   theme(axis.text.x = element_text(angle = 25, vjust = 1.0, hjust = 1.0))+  facet_wrap(~COR,ncol = 3) -->
+<!-- grid.arrange(objeto, ncol=1, nrow=1, widths=c(8)) -->
+
+<!-- ``` -->
 </code></pre>
 </div>
 <script type="text/javascript">
